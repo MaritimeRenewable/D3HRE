@@ -22,9 +22,13 @@ test_route = np.array(
 
 test_mission = get_mission('2014-01-01', test_route, 2)
 
+mission = Mission('2014-01-01', test_route, 2)
+
+print(mission.ID)
+
 def test_hash_value():
     assert hash_value(test_route)[:7] == 'fc34214'
-    assert hash_value(test_mission)[:7] == 'c675217'
+    assert mission.ID == '62d61d56dd476871993a1af318e96656'
 
 def test_variable_speed():
     """
@@ -44,6 +48,7 @@ def test_interpolation():
     """
     assert test_mission.lon.min() == pytest.approx(-180, 0.1)
     assert test_mission.lon.max() == pytest.approx( 180, 0.1)
+
 
 
 @pytest.mark.parametrize("test_input, expected",[
